@@ -6,8 +6,11 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'dense-analysis/ale'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
 call plug#end()
@@ -66,6 +69,12 @@ nnoremap <CR> :nohlsearch<CR><CR>
 
 " Macvim settings
 set guifont=Cascadia\ Code:h14
+
+" Linter from ALE plugin
+let g:ale_linters = {
+      \   'ruby': ['standardrb', 'rubocop'],
+      \   'javascript': ['eslint'],
+      \}
 
 
 """" Miscellaneous settings that might be worth enabling
