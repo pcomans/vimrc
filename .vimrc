@@ -64,6 +64,9 @@ set hlsearch            " highlight matches
 " turn off search highlighting with <CR> (carriage-return)
 nnoremap <CR> :nohlsearch<CR><CR>
 
+" Macvim settings
+set guifont=Cascadia\ Code:h14
+
 
 """" Miscellaneous settings that might be worth enabling
 
