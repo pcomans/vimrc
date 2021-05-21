@@ -11,6 +11,8 @@ Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'preservim/nerdtree'
 
 " Initialize plugin system
 call plug#end()
@@ -19,6 +21,7 @@ call plug#end()
 
 """" Basic Behavior
 
+set nocompatible        " We're running Vim, not Vi!
 set number              " show line numbers
 set wrap                " wrap lines
 set encoding=utf-8      " set encoding to UTF-8 (default was "latin1")
@@ -29,6 +32,11 @@ set showmatch           " highlight matching parentheses / brackets [{()}]
 set laststatus=2        " always show statusline (even with only single window)
 set ruler               " show line and column number of the cursor on right side of statusline
 set visualbell          " blink cursor on error, instead of beeping
+set autoread            " auto reload on external changes
+
+" More intuitive split behavior
+set splitbelow
+set splitright
 
 
 """" Key Bindings
@@ -41,12 +49,13 @@ nmap k gk
 """" Vim Appearance
 
 " put colorscheme files in ~/.vim/colors/
-colorscheme murphy " good colorschemes: murphy, slate, molokai, badwolf, solarized
+colorscheme default " good colorschemes: murphy, slate, molokai, badwolf, solarized
 
 " use filetype-based syntax highlighting, ftplugins, and indentation
-syntax enable
-filetype plugin indent on
-
+syntax on               " Enable syntax highlighting
+filetype on             " Enable filetype detection
+filetype indent on      " Enable filetype-specific indenting
+filetype plugin on      " Enable filetype-specific plugins
 
 """" Tab settings
 
@@ -72,10 +81,11 @@ set guifont=Cascadia\ Code:h14
 
 " Linter from ALE plugin
 let g:ale_linters = {
-      \   'ruby': ['standardrb', 'rubocop'],
-      \   'javascript': ['eslint'],
-      \}
+            \   'ruby': ['ruby', 'rubocop'],
+            \   'javascript': ['eslint'],
+            \}
 
+autocmd FileType ruby compiler ruby
 
 """" Miscellaneous settings that might be worth enabling
 
